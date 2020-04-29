@@ -42,6 +42,12 @@ foreach ( $edit_data as $row):
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="col-sm-3 control-label"><?php echo get_phrase('cin');?></label>
+                                <div class="col-sm-5">
+                                    <input type="text" class="form-control" name="teacher_id" value="<?php echo $row['teacher_id'];?>"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="col-sm-3 control-label"><?php echo get_phrase('birthday');?></label>
                                 <div class="col-sm-5">
                                     <input type="text" class="datepicker form-control" name="birthday" value="<?php echo $row['birthday'];?>"/>

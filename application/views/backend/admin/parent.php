@@ -20,6 +20,7 @@
                     <thead>
                         <tr>
                             <th>#</th>
+                            <th><div><?php echo get_phrase('parent_id');?></div></th>
                             <th><div><?php echo get_phrase('name');?></div></th>
                             <th><div><?php echo get_phrase('email');?></div></th>
                             <th><div><?php echo get_phrase('phone');?></div></th>
@@ -34,6 +35,7 @@
                             foreach($parents as $row):?>
                         <tr>
                             <td><?php echo $count++;?></td>
+                            <td><?php echo $row['parent_id'];?></td>
                             <td><?php echo $row['name'];?></td>
                             <td><?php echo $row['email'];?></td>
                             <td><?php echo $row['phone'];?></td>

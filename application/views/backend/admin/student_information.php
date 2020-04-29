@@ -6,10 +6,11 @@
                     <div class="panel-title">
 					 <?php echo get_phrase('student_information_page'); ?>
 					</div>
-					</div>
+				</div>
 <div class="table-responsive">
 	<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:;" onclick="showAjaxModal('<?php echo base_url();?>index.php?modal/popup/student_add/');" 
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="javascript:;" onclick="showAjaxModal('<?php echo base_url();?>index.php?modal/popup/student_add/');" 
     class="btn btn-primary">
         <i class="entypo-plus-circled"></i>
         <?php echo get_phrase('add_new_student');?>

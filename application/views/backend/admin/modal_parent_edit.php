@@ -24,7 +24,14 @@
                             	value="<?php echo $row['name'];?>">
 						</div>
 					</div>
-                    
+                    <div class="form-group">
+						<label for="field-1" class="col-sm-3 control-label"><?php echo get_phrase('cin');?></label>
+                        
+						<div class="col-sm-5">
+							<input type="text" class="form-control" name="parent_id" data-validate="required" data-message-required="<?php echo get_phrase('value_required');?>"
+                            	value="<?php echo $row['parent_id'];?>">
+						</div>
+					</div>
 					<div class="form-group">
 						<label for="field-1" class="col-sm-3 control-label"><?php echo get_phrase('email');?></label>
 						<div class="col-sm-5">

@@ -21,8 +21,10 @@
                     <thead>
                         <tr>
                             <th width="80"><div><?php echo get_phrase('photo');?></div></th>
+							<th><div><?php echo get_phrase('librarian_id');?></div></th>
                             <th><div><?php echo get_phrase('name');?></div></th>
-                            <th><div><?php echo get_phrase('email');?></div></th>
+                            <th><div><?php echo get_phrase('phone');?></div></th>
+							<th><div><?php echo get_phrase('email');?></div></th>
                             <th><div><?php echo get_phrase('options');?></div></th>
                         </tr>
                     </thead>
@@ -32,7 +34,9 @@
                                 foreach($librarians as $row):?>
                         <tr>
                             <td><img src="<?php echo $this->crud_model->get_image_url('librarian',$row['librarian_id']);?>" class="img-circle" width="30" /></td>
+							<td><?php echo $row['librarian_id'];?></td>
                             <td><?php echo $row['name'];?></td>
+							<td><?php echo $row['phone'];?></td>
                             <td><?php echo $row['email'];?></td>
                             <td>
                                 
@@ -44,7 +48,7 @@
                                         
                                         <!-- librarian EDITING LINK -->
                                         <li>
-                                        	<a href="#" onclick="showAjaxModal('<?php echo base_url();?>index.php?modal/popup/modal_librarian_edit/<?php echo $row['librarian_id'];?>');">
+                                        	<a href="#" onclick="showAjaxModal('<?php echo base_url();?>index.php?modal/popup/modal_edit_librarian/<?php echo $row['librarian_id'];?>');">
                                             	<i class="entypo-pencil"></i>
 													<?php echo get_phrase('edit');?>
                                                	</a>

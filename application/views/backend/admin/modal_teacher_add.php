@@ -18,7 +18,12 @@
 							<input type="text" class="form-control" name="name" data-validate="required" data-message-required="<?php echo get_phrase('value_required');?>" value="" autofocus>
 						</div>
 					</div>
-					
+					<div class="form-group">
+						<label class="col-sm-3 control-label"><?php echo get_phrase('cin');?></label>
+						<div class="col-sm-5">
+							<input type="text" class="form-control" name="teacher_id" value="<?php echo $row['teacher_id'];?>"/>
+						</div>
+					</div>
 					<div class="form-group">
 						<label for="field-2" class="col-sm-3 control-label"><?php echo get_phrase('birthday');?></label>
                         
@@ -61,7 +66,7 @@
 							<input type="text" class="form-control" name="email" value="">
 						</div>
 					</div>
-					
+				
 					<div class="form-group">
 						<label for="field-2" class="col-sm-3 control-label"><?php echo get_phrase('password');?></label>
                         

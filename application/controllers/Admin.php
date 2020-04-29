@@ -34,7 +34,9 @@ class Admin extends CI_Controller
         if ($this->session->userdata('admin_login') == 1)
             redirect(base_url() . 'index.php?admin/dashboard', 'refresh');
     }
-    
+    public function ayoub(){
+        echo "affen";
+    }
     /***ADMIN DASHBOARD***/
     function dashboard()
     {
@@ -218,6 +220,7 @@ class Admin extends CI_Controller
         if ($this->session->userdata('admin_login') != 1)
             redirect('login', 'refresh');
         if ($param1 == 'create') {
+            $data['parent_id']        		= $this->input->post('parent_id');
             $data['name']        			= $this->input->post('name');
             $data['email']       			= $this->input->post('email');
             $data['password']    			= $this->input->post('password');
@@ -230,6 +233,7 @@ class Admin extends CI_Controller
             redirect(base_url() . 'index.php?admin/parent/', 'refresh');
         }
         if ($param1 == 'edit') {
+            $data['parent_id']              = $this->input->post('parent_id');
             $data['name']                   = $this->input->post('name');
             $data['email']                  = $this->input->post('email');
             $data['phone']                  = $this->input->post('phone');
@@ -258,6 +262,7 @@ class Admin extends CI_Controller
         if ($this->session->userdata('admin_login') != 1)
             redirect(base_url(), 'refresh');
         if ($param1 == 'create') {
+            $data['teacher_id']  = $this->input->post('teacher_id');
             $data['name']        = $this->input->post('name');
             $data['birthday']    = $this->input->post('birthday');
             $data['sex']         = $this->input->post('sex');
@@ -279,7 +284,7 @@ class Admin extends CI_Controller
             $data['address']     = $this->input->post('address');
             $data['phone']       = $this->input->post('phone');
             $data['email']       = $this->input->post('email');
-            
+            $data['teacher_id']  = $this->input->post('teacher_id');
             $this->db->where('teacher_id', $param2);
             $this->db->update('teacher', $data);
             move_uploaded_file($_FILES['userfile']['tmp_name'], 'uploads/teacher_image/' . $param2 . '.jpg');
@@ -396,6 +401,7 @@ class Admin extends CI_Controller
         if ($this->session->userdata('admin_login') != 1)
             redirect(base_url(), 'refresh');
         if ($param1 == 'create') {
+            $data['librarian_id']= $this->input->post('librarian_id');
             $data['name']        = $this->input->post('name');
             $data['birthday']    = $this->input->post('birthday');
             $data['sex']         = $this->input->post('sex');
@@ -411,6 +417,7 @@ class Admin extends CI_Controller
             redirect(base_url() . 'index.php?admin/librarian/', 'refresh');
         }
         if ($param1 == 'do_update') {
+            $data['librarian_id']= $this->input->post('librarian_id');
             $data['name']        = $this->input->post('name');
             $data['birthday']    = $this->input->post('birthday');
             $data['sex']         = $this->input->post('sex');
@@ -763,7 +770,7 @@ class Admin extends CI_Controller
             $this->session->set_flashdata('flash_message' , get_phrase('data_deleted'));
             redirect(base_url() . 'index.php?admin/subject/'.$param3, 'refresh');
         }
-		 $page_data['class_id']   = $param1;
+		$page_data['class_id']   = $param1;
         $page_data['subjects']   = $this->db->get_where('subject' , array('class_id' => $param1))->result_array();
         $page_data['page_name']  = 'subject';
         $page_data['page_title'] = get_phrase('manage_subject');
@@ -773,9 +780,40 @@ class Admin extends CI_Controller
     /****MANAGE CLASSES*****/
     function classes($param1 = '', $param2 = '')
     {
+        
         if ($this->session->userdata('admin_login') != 1)
             redirect(base_url(), 'refresh');
-        
+
+            if($param1 == 'create'){
+            $data['name']         = $this->input->post('name');
+            $data['name_numeric'] = $this->input->post('name_numeric');
+            $data['teacher_id']   = $this->input->post('teacher_id');
+
+            $this->db->insert('class', $data);
+            $this->session->set_flashdata('flash_message' , get_phrase('data_added_successfully'));
+            redirect(base_url() . 'index.php?admin/classes', 'refresh');
+
+            }
+        if ($param1 == 'do_update') {
+                $data['name']       = $this->input->post('name');
+                $data['name_numeric']   = $this->input->post('name_numeric');
+                $data['teacher_id'] = $this->input->post('teacher_id');
+                
+                $this->db->where('class_id', $param2);
+                $this->db->update('class', $data);
+                $this->session->set_flashdata('flash_message' , get_phrase('data_updated'));
+                redirect(base_url() . 'index.php?admin/classes/', 'refresh');
+            } else if ($param1 == 'edit') {
+                $page_data['edit_data'] = $this->db->get_where('class', array(
+                    'class_id' => $param2
+                ))->result_array();
+            }
+            if ($param1 == 'delete') {
+                $this->db->where('class_id', $param2);
+                $this->db->delete('class');
+                $this->session->set_flashdata('flash_message' , get_phrase('data_deleted'));
+                redirect(base_url() . 'index.php?admin/classes', 'refresh');
+            }
         $page_data['classes']    = $this->db->get('class')->result_array();
         $page_data['page_name']  = 'class';
         $page_data['page_title'] = get_phrase('manage_class');
