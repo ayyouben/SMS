@@ -1221,11 +1221,45 @@ class Admin extends CI_Controller
 	
 
     /****MANAGE SECTIONS*****/
-    function section($class_id = '')
+    function section($param1='',$param2='',$param3='')
     {
         if ($this->session->userdata('admin_login') != 1)
             redirect(base_url(), 'refresh');
         // detect the first class
+        if($param1 =='create'){   
+            $data['name'] = $this->input->post('name');
+            $data['nick_name'] = $this->input->post('nick_name');
+            $data['teacher_id'] = $this->input->post('teacher_id');
+            $data['class_id'] = $this->input->post('class_id');
+            
+            $this->db->insert('section',$data);
+            $this->session->set_flashdata('flash_message' , get_phrase('data_updated'));
+            redirect(base_url() . 'index.php?admin/section/', 'refresh');
+        }
+        if($param1=='do_update'){
+            $data['name'] = $this->input->post('name');
+            $data['nick_name'] = $this->input->post('nick_name');
+            $data['class_id'] = $this->input->post('class_id');
+            $data['teacher_id'] = $this->input->post('teacher_id');
+            
+            $this->db->where('section_id', $param2);
+            $this->db->update('section', $data);
+            $this->session->set_flashdata('flash_message' , get_phrase('data_updated'));
+            redirect(base_url() . 'index.php?admin/section/', 'refresh');
+
+          } else if ($param1 == 'edit') {
+            $page_data['edit_data'] = $this->db->get_where('section', array(
+                'section_id' => $param2
+            ))->result_array();
+        }
+
+        if($param1=='delete'){
+            $this->db->where('section_id', $param2);
+            $this->db->delete('section');
+
+            $this->session->set_flashdata('flash_message' , get_phrase('data_updated'));
+            redirect(base_url() . 'index.php?admin/section/', 'refresh');
+        }
         
 
         $page_data['page_name']  = 'section';

@@ -98,7 +98,7 @@
             </ul>
         </li>
 
- <!-- ENQUIRY TABLE INFO -->
+        <!-- ENQUIRY TABLE INFO -->
         <li class="<?php if ($page_name == 'academic_syllabus') echo 'active'; ?> ">
             <a href="<?php echo base_url(); ?>index.php?admin/academic_syllabus">
                 <i class="entypo-book"></i>
@@ -138,7 +138,7 @@
             </a>
         </li>
 
- <!-- MEDIA -->
+        <!-- MEDIA -->
         <li class="<?php if ($page_name == 'media') echo 'active'; ?> ">
             <a href="<?php echo base_url(); ?>index.php?admin/media">
                 <i class="entypo-target"></i>
@@ -207,7 +207,7 @@
         if ($page_name == 'teacher_id_card' ||
 		 	$page_name == 'hostel_id_card' ||
 			$page_name == 'accountant_id_card' ||
-                $page_name == 'librarian_id_card')
+            $page_name == 'librarian_id_card')
             echo 'opened active';
         ?> ">
             <a href="#">
@@ -421,7 +421,7 @@
             </ul>
         </li>
 
-<!-- AASIGNMENTS -->
+        <!-- AASIGNMENTS -->
         <li class="<?php if ($page_name == 'assignment') echo 'active'; ?> ">
             <a href="<?php echo base_url(); ?>index.php?admin/assignment">
                 <i class="entypo-book"></i>
